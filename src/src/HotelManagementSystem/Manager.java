@@ -5,8 +5,8 @@ import java.io.IOException;
 import java.util.ArrayList;
 
 public class Manager extends Admin{
-    public Manager(String name,int pin){
-        super(name,pin);
+    public Manager(String name,int pin,String type){
+        super(name,pin,type);
     }
     public void generateReport(ArrayList<booking> bookings){
         for(booking booking:bookings){

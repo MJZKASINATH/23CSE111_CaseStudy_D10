@@ -7,13 +7,12 @@ public class room {
     public room(int roomNo, String roomType) {
         this.roomNo = roomNo;
         this.roomType = roomType;
-        if (roomType == "Deluxe") {
+        if (roomType.equalsIgnoreCase("Deluxe")) {
         		this.price=500;
         }
-        else if (roomType == "VIP") {
+        else if (roomType.equalsIgnoreCase("VIP")){
         	this.price=1000;
         }
-        this.isAvailable = true;
     }
     public boolean checkAvailability() {
         return isAvailable;

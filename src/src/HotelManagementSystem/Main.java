@@ -3,17 +3,20 @@ package HotelManagementSystem;
 import java.util.Scanner;
 
 public class Main {
-    static Receptionist defaultReceptionist=new Receptionist("Default",0000);
+    static Receptionist defaultReceptionist=new Receptionist("Default",0000,"receptionist");
     public static void main(String[] args) {
         int choice;
         String name;
+        boolean flag=false;
         Scanner sc = new Scanner(System.in);
         System.out.println("Welcome to Hotel Management System");
         System.out.println("Enter login type: ");
         System.out.println("1. Guest Login"+"\n2. Admin Login");
+        System.out.print("-->");
         choice=sc.nextInt();
+        sc.nextLine();
         switch(choice){
-            case 1:System.out.println("Enter your name: ");
+            case 1:{System.out.println("Enter your name: ");
             name = sc.nextLine();
             for (guest g:UsersList.getGuestList()){
                 if (g.getName()==name){
@@ -31,28 +34,39 @@ public class Main {
                 }else{
                     System.out.println("Ask admin to add you to guest list");
                 }
-            }break;
-            case 2:System.out.println("Enter your name: ");
+            }}break;
+            case 2:{
+            System.out.println("Enter your name: ");
+            System.out.print("-->");
             name = sc.nextLine();
             System.out.println("Enter your pin: ");
+            System.out.print("-->");
             int pin = sc.nextInt();
             for (Admin a:UsersList.getAdminList()){
-                if (a.getAdminName()==name){
+                if (a.getAdminName().equals(name)){
                     if (a.getAdminPin()==pin){
-                        switch(a.getAdminType()){
+                        flag=true;
+                        while (flag) {
+                            switch(a.getAdminType()){
                             case "receptionist":{
-                                Receptionist a1 = new Receptionist(name, pin);
+                                Receptionist a1 = new Receptionist(name, pin,"receptionist");
                                 System.out.println("Services provided: ");
-                                System.out.println("1.Check in Guest\n2.Check Out Guest\n3.retrieveBookingDetails\n4.Guest Details\5.Room Details\6.View Occupancy" );
+                                System.out.println("1.Check in Guest\n2.Check Out Guest\n3.retrieveBookingDetails\n4.Guest Details\n5.Room Details\n6.View Occupancy" );
+                                System.out.print("-->");
                                 choice=sc.nextInt();
+                                sc.nextLine();
                                 switch (choice){
                                     case 1:{
                                         System.out.println("Enter guest name");
+                                        System.out.print("-->");
                                         name=sc.nextLine();
                                         System.out.println("Enter idProof type");
+                                        System.out.print("-->");
                                         String id = sc.nextLine();
                                         System.out.println("Enter phone Number");
-                                        int phn = sc.nextInt();
+                                        System.out.print("-->");
+                                        long phn = sc.nextLong();
+                                        sc.nextLine();
                                         guest newG=new guest(name, id, phn);
                                         a1.checkInGuest(newG);
                                         UsersList.getGuestList().add(newG);
@@ -60,11 +74,12 @@ public class Main {
                                     break;
                                     case 2:{
                                         System.out.println("Enter guest name");
+                                        System.out.print("-->");
                                         name=sc.nextLine();
                                         for(int i=0;i<UsersList.getGuestList().size();i++){
                                             if(UsersList.getGuestList().get(i).getName()==name){
                                                 a1.checkOutGuest(UsersList.getGuestList().get(i));
-                                                UsersList.getGuestList().remove(i);
+                                                UsersList.getGuestList().remove(i);break;
                                             }
                                         }
                                         
@@ -72,6 +87,7 @@ public class Main {
                                     break;
                                     case 3:{
                                         System.out.println("Enter booking number");
+                                        System.out.print("-->");
                                         int bookNo=sc.nextInt();
                                         for (booking booking: UsersList.getBookingList()){
                                             if(booking.getBookingNo()==bookNo){
@@ -83,6 +99,7 @@ public class Main {
                                     break;
                                     case 4:{
                                         System.out.println("Enter guest name: ");
+                                        System.out.print("-->");
                                         name=sc.nextLine();
                                         for (guest g:UsersList.getGuestList()){
                                             if(g.getName()==name){
@@ -92,6 +109,7 @@ public class Main {
                                     }break;
                                     case 5:{
                                         System.out.println("Enter room Number");
+                                        System.out.print("-->");
                                         int rno=sc.nextInt();
                                         for (room r: UsersList.getRoomsList()){
                                             if(r.getRoomNo()==rno){
@@ -102,15 +120,18 @@ public class Main {
                                     case 6:{
                                         a1.viewOccupancy(UsersList.getRoomsList());
                                     }break;
-                                }
+                                    case 7:flag=false;
+                                }break;  
                             }case "manager":{
-                                 Manager a1 = new Manager(name, pin);
+                                 Manager a1 = new Manager(name, pin,"manager");
                                  System.out.println("Services provided: ");
                                     System.out.println("1.Generate Bill\n2.Generate Report\n3.retrieveBookingDetails\n4.view Occupancy" );
+                                    System.out.print("-->");
                                     choice=sc.nextInt();
                                     switch (choice){
                                         case 1:{
                                             System.out.println("Enter guest name");
+                                            System.out.print("-->");
                                             name=sc.nextLine();
                                             for (guest g:UsersList.getGuestList()){
                                                 if(name==g.getName()){
@@ -128,6 +149,7 @@ public class Main {
                                         break;
                                         case 3:{
                                         System.out.println("Enter booking number");
+                                        System.out.print("-->");
                                         int bookNo=sc.nextInt();
                                         for (booking booking: UsersList.getBookingList()){
                                             if(booking.getBookingNo()==bookNo){
@@ -142,16 +164,23 @@ public class Main {
                                     }break;
                                         
                                     }
-                            }
+                            }break;
                         }
+                        }
+               
+                    }else{
+                        System.out.println("Invalid Credentials.Try Again!");
                     }
+                }else if(!flag){
+                    System.out.println("You're not an admin");
                 }
 
             }
-
         }
-      sc.close();  
-    }
+        }
+      sc.close(); 
+
    
     
+}
 }

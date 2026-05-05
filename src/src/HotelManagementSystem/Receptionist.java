@@ -3,8 +3,8 @@ package HotelManagementSystem;
 import java.util.Scanner;
 
 public class Receptionist extends Admin {
-    public Receptionist(String name, int pin){
-        super(name,pin);
+    public Receptionist(String name, int pin,String type){
+        super(name,pin,type);
     }
     public void checkInGuest(guest g) {
         g.getBooking().getRoom().releaseRoom();

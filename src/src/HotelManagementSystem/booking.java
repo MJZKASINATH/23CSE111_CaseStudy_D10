@@ -19,6 +19,7 @@ public class booking {
         this.guestname = guestname;
         totalBookings++;
         this.bookingNo=totalBookings;
+        this.room=room;
     }
     public void getBookingDetails(String filepath) {
     	try {

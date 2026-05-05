@@ -6,9 +6,10 @@ public abstract class Admin {
     private int pin;
     private String type;
 
-    public Admin(String name,int pin){
+    public Admin(String name,int pin,String type){
         this.name=name;
         this.pin=pin;
+        this.type=type;
     }
     public void viewOccupancy(ArrayList<room> rooms){
         System.out.println("Occupancy Report:");

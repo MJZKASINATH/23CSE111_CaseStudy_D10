@@ -3,12 +3,13 @@ import java.util.Scanner;
 public class guest {
 	private String name;
 	private String idProof;
-	private int phoneNumber;
+	private long phoneNumber;
 	private booking booking;
-	public guest(String name, String idProof, int phoneNumber) {
+	public guest(String name, String idProof, long phoneNumber) {
 		this.name=name;
 		this.idProof=idProof;
 		this.phoneNumber=phoneNumber;
+		this.bookRoom();
 	}
 	public void getGuestDetails() {
         System.out.println("Name: " + name);
@@ -28,7 +29,7 @@ public class guest {
 		int rno=sc.nextInt();
 		booking b = new booking(cindate, codate, name, new room(rno,rt));
 		this.booking=b;
-		Main.bookings.add(b);
+		UsersList.bookings.add(b);
 		sc.close();
 	}
 	public void viewBooking() {
