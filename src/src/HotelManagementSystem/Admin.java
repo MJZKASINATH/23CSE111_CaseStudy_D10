@@ -19,7 +19,7 @@ public abstract class Admin {
         }
     }
      public void retrieveBooking(booking b) {
-        b.getBookingDetails("current.txt");
+        b.getBookingDetails("/home/kasinath-k-s/Documents/JavaProject/23CSE111_CaseStudy_D10/output/files/current.txt");
     }
     public String getAdminName(){
         return name;

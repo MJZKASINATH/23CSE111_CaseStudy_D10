@@ -28,10 +28,11 @@ public class guest {
 		int rno=sc.nextInt();
 		booking b = new booking(cindate, codate, name, new room(rno,rt));
 		this.booking=b;
+		Main.bookings.add(b);
 		sc.close();
 	}
 	public void viewBooking() {
-		booking.getBookingDetails("bookingDetails.txt");
+		booking.getBookingDetails("/home/kasinath-k-s/Documents/JavaProject/23CSE111_CaseStudy_D10/output/files/bookingDetails.txt");
 	}
     public booking getBooking(){
         return booking;

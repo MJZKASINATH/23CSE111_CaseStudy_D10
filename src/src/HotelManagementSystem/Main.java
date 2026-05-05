@@ -1,13 +1,8 @@
 package HotelManagementSystem;
 
 import java.util.Scanner;
-import java.util.ArrayList;
 
 public class Main {
-    private static ArrayList<Admin> admins = new ArrayList<>();
-    private static ArrayList<guest> guests=new ArrayList<>();
-    public static ArrayList<room> rooms=new ArrayList<>();
-    public static ArrayList<booking>bookings=new ArrayList<>();
     static Receptionist defaultReceptionist=new Receptionist("Default",0000);
     public static void main(String[] args) {
         int choice;
@@ -20,7 +15,7 @@ public class Main {
         switch(choice){
             case 1:System.out.println("Enter your name: ");
             name = sc.nextLine();
-            for (guest g:guests){
+            for (guest g:UsersList.getGuestList()){
                 if (g.getName()==name){
                     System.out.println("Welcome\n\n");
                     System.out.println("Services provided: ");
@@ -41,7 +36,7 @@ public class Main {
             name = sc.nextLine();
             System.out.println("Enter your pin: ");
             int pin = sc.nextInt();
-            for (Admin a:admins){
+            for (Admin a:UsersList.getAdminList()){
                 if (a.getAdminName()==name){
                     if (a.getAdminPin()==pin){
                         switch(a.getAdminType()){
@@ -60,16 +55,16 @@ public class Main {
                                         int phn = sc.nextInt();
                                         guest newG=new guest(name, id, phn);
                                         a1.checkInGuest(newG);
-                                        Main.guests.add(newG);
+                                        UsersList.getGuestList().add(newG);
                                     }
                                     break;
                                     case 2:{
                                         System.out.println("Enter guest name");
                                         name=sc.nextLine();
-                                        for(int i=0;i<guests.size();i++){
-                                            if(guests.get(i).getName()==name){
-                                                a1.checkOutGuest(guests.get(i));
-                                                Main.guests.remove(i);
+                                        for(int i=0;i<UsersList.getGuestList().size();i++){
+                                            if(UsersList.getGuestList().get(i).getName()==name){
+                                                a1.checkOutGuest(UsersList.getGuestList().get(i));
+                                                UsersList.getGuestList().remove(i);
                                             }
                                         }
                                         
@@ -78,7 +73,7 @@ public class Main {
                                     case 3:{
                                         System.out.println("Enter booking number");
                                         int bookNo=sc.nextInt();
-                                        for (booking booking: bookings){
+                                        for (booking booking: UsersList.getBookingList()){
                                             if(booking.getBookingNo()==bookNo){
                                                 a1.retrieveBooking(booking);
                                                 System.out.println("Written to 'current.txt'");
@@ -89,7 +84,7 @@ public class Main {
                                     case 4:{
                                         System.out.println("Enter guest name: ");
                                         name=sc.nextLine();
-                                        for (guest g:guests){
+                                        for (guest g:UsersList.getGuestList()){
                                             if(g.getName()==name){
                                                 g.getGuestDetails();
                                             }
@@ -98,14 +93,14 @@ public class Main {
                                     case 5:{
                                         System.out.println("Enter room Number");
                                         int rno=sc.nextInt();
-                                        for (room r: rooms){
+                                        for (room r: UsersList.getRoomsList()){
                                             if(r.getRoomNo()==rno){
                                                 r.displayRoom();
                                             }
                                     }
                                 }break;
                                     case 6:{
-                                        a1.viewOccupancy(rooms);
+                                        a1.viewOccupancy(UsersList.getRoomsList());
                                     }break;
                                 }
                             }case "manager":{
@@ -117,7 +112,7 @@ public class Main {
                                         case 1:{
                                             System.out.println("Enter guest name");
                                             name=sc.nextLine();
-                                            for (guest g:guests){
+                                            for (guest g:UsersList.getGuestList()){
                                                 if(name==g.getName()){
                                                     a1.generateBill(g);
                                                     System.out.println("Bill written to 'bill.txt'");
@@ -134,7 +129,7 @@ public class Main {
                                         case 3:{
                                         System.out.println("Enter booking number");
                                         int bookNo=sc.nextInt();
-                                        for (booking booking: bookings){
+                                        for (booking booking: UsersList.getBookingList()){
                                             if(booking.getBookingNo()==bookNo){
                                                 a1.retrieveBooking(booking);
                                                 System.out.println("Written to 'current.txt'");
@@ -143,7 +138,7 @@ public class Main {
                                     }
                                         break;
                                         case 4:{
-                                        a1.viewOccupancy(rooms);
+                                        a1.viewOccupancy(UsersList.getRoomsList());
                                     }break;
                                         
                                     }

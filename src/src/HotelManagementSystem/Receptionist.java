@@ -7,15 +7,15 @@ public class Receptionist extends Admin {
         super(name,pin);
     }
     public void checkInGuest(guest g) {
+        g.getBooking().getRoom().releaseRoom();
         System.out.println(g.getName() + " checked in.");
     }
 
     public void checkOutGuest(guest g) {
+        g.getBooking().getRoom().lockRoom();
         System.out.println(g.getName() + " checked out.");
     }
-    public void retrieveBooking(booking b) {
-        b.getBookingDetails("current.txt");
-    }
+   
     public void initiateService(booking b){
         Scanner sc =new Scanner(System.in);
         String servicetype;
@@ -27,6 +27,7 @@ public class Receptionist extends Admin {
             foodService food=new foodService(servicetype);
             food.provideService();
             sc.close();
+            b.addFoodServiceCost(food.getPrice());
             b.foodServiceCost+=food.getPrice();
         }else if(servicetype=="roomservice"){
             System.out.println("Enter the type of Service:");
@@ -34,7 +35,7 @@ public class Receptionist extends Admin {
             roomService room = new roomService(servicetype);
             room.provideService();
             sc.close();
-             b.roomServiceCost+=room.getPrice();
+            b.addRoomServiceCost(room.getPrice());
         }
         
     }

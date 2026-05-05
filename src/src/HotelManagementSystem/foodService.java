@@ -4,7 +4,7 @@ public class foodService extends service {
     private String mealType;
 
     public foodService(String mealType) {
-        super("Food Service", 0);
+        super("Food Service");
         this.mealType = mealType.toLowerCase();
 
         switch (mealType.toLowerCase()) {
