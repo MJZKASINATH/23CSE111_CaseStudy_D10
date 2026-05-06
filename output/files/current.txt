@@ -1,5 +1,5 @@
 Booking no:1
-Guest: Tharak
-Room No: 54
-Check-in: 1/2/3
-Check-out: 3/4/5
+Guest: deva
+Room No: 101
+Check-in: 01-02-26
+Check-out: 03-02-26
