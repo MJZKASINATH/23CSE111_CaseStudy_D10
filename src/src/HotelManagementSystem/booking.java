@@ -12,8 +12,8 @@ public class booking implements Serializable{
     private String checkOutDate;
     private String guestname;
     private room room;
-    public double foodServiceCost ;
-    public double roomServiceCost;
+    private double foodServiceCost ;
+    private double roomServiceCost;
     private  int bookingNo;
     public static int totalBookings;
     private static final String TOTAL_BOOKINGS_FILE = "/home/kasinath-k-s/Documents/JavaProject/23CSE111_CaseStudy_D10/output/files/totalBookings.txt";
