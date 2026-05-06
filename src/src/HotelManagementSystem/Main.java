@@ -7,7 +7,8 @@ public class Main {
     public static void main(String[] args) {
         int choice;
         String name;
-        boolean flag=false;
+        boolean flag,adminFound;
+        flag=adminFound=false;
         UsersList.loadGuestsFromFile();
         UsersList.loadRoomsFromFile();
         UsersList.loadBookingsFromFile();
@@ -22,7 +23,7 @@ public class Main {
             case 1:{System.out.println("Enter your name: ");
             name = sc.nextLine();
             for (guest g:UsersList.getGuestList()){
-                if (g.getName()==name){
+                if (g.getName().equals(name)){
                     System.out.println("Welcome\n\n");
                     System.out.println("Services provided: ");
                     System.out.println("1.Book a Room\n2.Request Service\n3.Cancellation" );
@@ -47,6 +48,7 @@ public class Main {
             int pin = sc.nextInt();
             for (Admin a:UsersList.getAdminList()){
                 if (a.getAdminName().equals(name)){
+                    adminFound=true;
                     if (a.getAdminPin()==pin){
                         flag=true;
                         while (flag) {
@@ -81,7 +83,7 @@ public class Main {
                                         System.out.print("-->");
                                         name=sc.nextLine();
                                         for(int i=0;i<UsersList.getGuestList().size();i++){
-                                            if(UsersList.getGuestList().get(i).getName()==name){
+                                            if(UsersList.getGuestList().get(i).getName().equals(name)){
                                                 a1.checkOutGuest(UsersList.getGuestList().get(i));
                                                 UsersList.getGuestList().remove(i);
                                                 UsersList.saveGuestsToFile();
@@ -108,7 +110,7 @@ public class Main {
                                         System.out.print("-->");
                                         name=sc.nextLine();
                                         for (guest g:UsersList.getGuestList()){
-                                            if(g.getName()==name){
+                                            if(g.getName().equals(name)){
                                                 g.getGuestDetails();
                                             }
                                         }
@@ -131,16 +133,17 @@ public class Main {
                             }case "manager":{
                                  Manager a1 = new Manager(name, pin,"manager");
                                  System.out.println("Services provided: ");
-                                    System.out.println("1.Generate Bill\n2.Generate Report\n3.retrieveBookingDetails\n4.view Occupancy" );
+                                    System.out.println("1.Generate Bill\n2.Generate Report\n3.retrieveBookingDetails\n4.view Occupancy\n5.LogOut" );
                                     System.out.print("-->");
                                     choice=sc.nextInt();
+                                    sc.nextLine();
                                     switch (choice){
                                         case 1:{
                                             System.out.println("Enter guest name");
                                             System.out.print("-->");
                                             name=sc.nextLine();
                                             for (guest g:UsersList.getGuestList()){
-                                                if(name==g.getName()){
+                                                if(name.equals(g.getName())){
                                                     a1.generateBill(g);
                                                     System.out.println("Bill written to 'bill.txt'");
                                                 }
@@ -168,20 +171,23 @@ public class Main {
                                         case 4:{
                                         a1.viewOccupancy(UsersList.getRoomsList());
                                     }break;
-                                        
+                                        case 5:{
+                                            flag=false;
+                                        }break;
                                     }
-                            }break;
+                            }
                         }
                         }
                
                     }else{
                         System.out.println("Invalid Credentials.Try Again!");
                     }
-                }else if(!flag){
-                    System.out.println("You're not an admin");
+                    break;
                 }
 
-            }
+            } if(!adminFound){
+                    System.out.println("You're not an admin");
+                }
         }
         }
       sc.close(); 

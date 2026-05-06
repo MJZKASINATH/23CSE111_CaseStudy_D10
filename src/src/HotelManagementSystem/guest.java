@@ -16,7 +16,7 @@ public class guest implements Serializable{
         System.out.println("Name: " + name);
         System.out.println("ID Proof: " + idProof);
         System.out.println("Phone: " + phoneNumber);
-        System.out.println("BookingNo: " + booking);
+        System.out.println("BookingNo: " + booking.getBookingNo()+"\n");
 	}
 	public void bookRoom(Scanner sc) {
 		System.out.println("Enter Check in date:");

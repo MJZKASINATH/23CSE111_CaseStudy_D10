@@ -21,7 +21,7 @@ public class Receptionist extends Admin {
         String servicetype;
         System.out.println("Enter service type: ");
         servicetype=sc.nextLine();
-        if(servicetype=="foodservice"){
+        if(servicetype.equals("foodservice")){
             System.out.println("Enter the meals: ");
             servicetype= sc.nextLine();
             foodService food=new foodService(servicetype);
@@ -29,7 +29,7 @@ public class Receptionist extends Admin {
             sc.close();
             b.addFoodServiceCost(food.getPrice());
             b.foodServiceCost+=food.getPrice();
-        }else if(servicetype=="roomservice"){
+        }else if(servicetype.equals("roomservice")){
             System.out.println("Enter the type of Service:");
             servicetype=sc.nextLine();
             roomService room = new roomService(servicetype);
