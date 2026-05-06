@@ -25,16 +25,17 @@ public class guest implements Serializable{
 		String codate=sc.nextLine();
 		System.out.println("Enter RoomType:");
 		String rt=sc.nextLine();
-		System.out.println("Enter Room no:");
-		int rno=sc.nextInt();
-		room room = new room(rno,rt);
-		booking b = new booking(cindate, codate, name,room );
-		UsersList.rooms.add(room);
-		UsersList.saveRoomsToFile();
-		this.booking=b;
-		UsersList.bookings.add(b);
-		UsersList.saveBookingsToFile();
-		
+		for (room r:UsersList.getRoomsList()){
+			if (r.getRoomType().equalsIgnoreCase(rt) && r.checkAvailability()){
+				booking b = new booking(cindate, codate, name,r );
+				UsersList.rooms.add(r);
+				UsersList.saveRoomsToFile();
+				this.booking=b;
+				UsersList.bookings.add(b);
+				UsersList.saveBookingsToFile();
+				break;
+			}
+		}	
 	}
 	public void viewBooking() {
 		booking.getBookingDetails("/home/kasinath-k-s/Documents/JavaProject/23CSE111_CaseStudy_D10/output/files/bookingDetails.txt");

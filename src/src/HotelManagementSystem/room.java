@@ -15,7 +15,10 @@ public class room implements Serializable{
         }
         else if (roomType.equalsIgnoreCase("VIP")){
         	this.price=1000;
+        }else{
+            this.price=250;
         }
+        isAvailable=true;
     }
     public boolean checkAvailability() {
         return isAvailable;

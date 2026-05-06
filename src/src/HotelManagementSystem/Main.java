@@ -74,9 +74,11 @@ public class Main {
                                         long phn = sc.nextLong();
                                         sc.nextLine();
                                         guest newG=new guest(name, id, phn,sc);
-                                        a1.checkInGuest(newG);
-                                        UsersList.getGuestList().add(newG);
-                                        UsersList.saveGuestsToFile();
+                                        if (newG!=null){
+                                            a1.checkInGuest(newG);
+                                            UsersList.getGuestList().add(newG);
+                                            UsersList.saveGuestsToFile();
+                                        }      
                                     }
                                     break;
                                     case 2:{
@@ -90,8 +92,7 @@ public class Main {
                                                 UsersList.saveGuestsToFile();
                                                 break;
                                             }
-                                        }
-                                        
+                                        }   
                                     }
                                     break;
                                     case 3:{

@@ -20,6 +20,7 @@ public class Manager extends Admin{
             writer.write("Room Cost:"+g.getBooking().getRoom().getPrice()*g.getBooking().daysbetween()+"\n");
             writer.write("Total Room Service Cost: "+g.getBooking().getRoomServiceCost()+"\n");
             writer.write("Total Food Service Cost"+g.getBooking().getFoodServiceCost()+"\n");
+            writer.write("Total Bill: "+(g.getBooking().getFoodServiceCost()+g.getBooking().getRoomServiceCost()));
             writer.close();
             System.out.println("Bill generated as file");
         } catch (IOException e) {

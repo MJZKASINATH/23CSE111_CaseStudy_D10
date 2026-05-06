@@ -18,7 +18,7 @@ public abstract class Admin {
                 System.out.println("Room is available");
                 room.displayRoom();
             }
-            if (room.checkAvailability()){
+            else{
                 System.out.println("Room is occupied");
                 room.displayRoom();
             }

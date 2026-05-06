@@ -12,7 +12,7 @@ import java.util.Arrays;
 public class UsersList {
     private static ArrayList<Admin> admins=new ArrayList<>(Arrays.asList(new Receptionist("Devang",0013,"receptionist"),new Receptionist("Kasinath",0027,"receptionist"),new Manager("Devanandana",0012,"manager"),new Manager("Anandanarayan",0002,"manager")));;
     private static ArrayList<guest> guests=new ArrayList<>();
-    public static ArrayList<room> rooms=new ArrayList<>(Arrays.asList(new room(101, "deluxe"),new room(102, "deluxe"),new room(103, "deluxe"),new room(104, "deluxe"),new room(105, "deluxe"),new room(106, "deluxe"),new room(107, "deluxe"),new room(108, "deluxe"),new room(109, "deluxe"),new room(110, "deluxe"),new room(201, "vip"),new room(202, "vip"),new room(203, "vip"),new room(204, "vip"),new room(205, "vip"),new room(206, "vip"),new room(207, "vip"),new room(208, "vip"),new room(209, "vip"),new room(210, "vip")));
+    public static ArrayList<room> rooms=new ArrayList<>();
     public static ArrayList<booking>bookings=new ArrayList<>();
 
     private static final String GUEST_FILE = "/home/kasinath-k-s/Documents/JavaProject/23CSE111_CaseStudy_D10/output/files/guests.dat";
