@@ -1,5 +1,8 @@
 package HotelManagementSystem;
-public class room {
+
+import java.io.Serializable;
+
+public class room implements Serializable{
     private int roomNo;
     private String roomType;
     private double price;

@@ -8,6 +8,9 @@ public class Main {
         int choice;
         String name;
         boolean flag=false;
+        UsersList.loadGuestsFromFile();
+        UsersList.loadRoomsFromFile();
+        UsersList.loadBookingsFromFile();
         Scanner sc = new Scanner(System.in);
         System.out.println("Welcome to Hotel Management System");
         System.out.println("Enter login type: ");
@@ -25,7 +28,7 @@ public class Main {
                     System.out.println("1.Book a Room\n2.Request Service\n3.Cancellation" );
                     choice=sc.nextInt();
                     switch (choice){
-                        case 1:g.bookRoom();
+                        case 1:g.bookRoom(sc);
                         break;
                         case 2:defaultReceptionist.initiateService(g.getBooking());
                         break;
@@ -67,9 +70,10 @@ public class Main {
                                         System.out.print("-->");
                                         long phn = sc.nextLong();
                                         sc.nextLine();
-                                        guest newG=new guest(name, id, phn);
+                                        guest newG=new guest(name, id, phn,sc);
                                         a1.checkInGuest(newG);
                                         UsersList.getGuestList().add(newG);
+                                        UsersList.saveGuestsToFile();
                                     }
                                     break;
                                     case 2:{
@@ -79,7 +83,9 @@ public class Main {
                                         for(int i=0;i<UsersList.getGuestList().size();i++){
                                             if(UsersList.getGuestList().get(i).getName()==name){
                                                 a1.checkOutGuest(UsersList.getGuestList().get(i));
-                                                UsersList.getGuestList().remove(i);break;
+                                                UsersList.getGuestList().remove(i);
+                                                UsersList.saveGuestsToFile();
+                                                break;
                                             }
                                         }
                                         

@@ -1,9 +1,10 @@
 package HotelManagementSystem;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.io.Serializable;
 import java.time.LocalDate;
 import java.time.temporal.ChronoUnit;
-public class booking {
+public class booking implements Serializable{
 	private String checkInDate;
     private String checkOutDate;
     private String guestname;
