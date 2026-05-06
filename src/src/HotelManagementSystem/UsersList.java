@@ -76,7 +76,7 @@ public class UsersList {
             System.out.println("Room data loaded successfully!");
         } catch (Exception e) {
             System.out.println("No previous room data found. Starting fresh.");
-            rooms = new ArrayList<>(); // You might want to generate default rooms here instead!
+            rooms = new ArrayList<>(); 
         }
     }
 

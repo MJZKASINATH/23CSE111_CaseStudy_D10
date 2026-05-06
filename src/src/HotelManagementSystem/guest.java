@@ -19,9 +19,9 @@ public class guest implements Serializable{
         System.out.println("BookingNo: " + booking.getBookingNo()+"\n");
 	}
 	public void bookRoom(Scanner sc) {
-		System.out.println("Enter Check in date:");
+		System.out.println("Enter Check in date in (dd-MM-yy):");
 		String cindate=sc.nextLine();
-		System.out.println("Enter Check out date:");
+		System.out.println("Enter Check out date in (dd-MM-yy):");
 		String codate=sc.nextLine();
 		System.out.println("Enter RoomType:");
 		String rt=sc.nextLine();

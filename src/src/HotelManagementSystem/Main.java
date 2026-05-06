@@ -152,7 +152,7 @@ public class Main {
                                         break;
                                         case 2:{
                                             System.out.println("Reports:");
-                                            a1.generateReport(null);
+                                            a1.generateReport(UsersList.bookings);
                                             System.out.println("Report is written to the 'report.txt'");
                                         }
                                         break;

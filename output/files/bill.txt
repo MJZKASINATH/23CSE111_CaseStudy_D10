@@ -1,0 +1,4 @@
+Booking no:1
+Room Cost:1827000.0
+Total Room Service Cost: 0.0
+Total Food Service Cost0.0

@@ -3,6 +3,7 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.io.Serializable;
 import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.time.temporal.ChronoUnit;
 public class booking implements Serializable{
 	private String checkInDate;
@@ -24,21 +25,22 @@ public class booking implements Serializable{
     }
     public void getBookingDetails(String filepath) {
     	try {
-            FileWriter writer = new FileWriter(filepath, true);
+            FileWriter writer = new FileWriter(filepath);
             writer.write("Booking no:"+bookingNo+"\n") ;
             writer.write("Guest: " + guestname + "\n");
             writer.write("Room No: " + room.getRoomNo() + "\n");
             writer.write("Check-in: " + checkInDate + "\n");
             writer.write("Check-out: " + checkOutDate + "\n");
             writer.close();
-            System.out.println("Details written to file");
         } catch (IOException e) {
             System.out.println("Error occurred");
         }
+        System.out.println("Details written to file");
     }
     public long daysbetween(){
-        LocalDate start=LocalDate.parse(this.checkInDate);
-        LocalDate end=LocalDate.parse(this.checkOutDate);
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd-MM-yy");
+        LocalDate start=LocalDate.parse(this.checkInDate,formatter);
+        LocalDate end=LocalDate.parse(this.checkOutDate,formatter);
         return ChronoUnit.DAYS.between(start, end) + 1;
     }
     public int getBookingNo(){
