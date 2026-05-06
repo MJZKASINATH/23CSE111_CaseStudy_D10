@@ -12,6 +12,7 @@ public class Main {
         UsersList.loadGuestsFromFile();
         UsersList.loadRoomsFromFile();
         UsersList.loadBookingsFromFile();
+        booking.loadTotalBookings();
         Scanner sc = new Scanner(System.in);
         System.out.println("Welcome to Hotel Management System");
         System.out.println("Enter login type: ");
@@ -100,29 +101,36 @@ public class Main {
                                         for (booking booking: UsersList.getBookingList()){
                                             if(booking.getBookingNo()==bookNo){
                                                 a1.retrieveBooking(booking);
-                                                System.out.println("Written to 'current.txt'");
                                             }
-                                        }
+                                        }System.out.println("Written to 'current.txt'");
                                     }
                                     break;
                                     case 4:{
                                         System.out.println("Enter guest name: ");
                                         System.out.print("-->");
                                         name=sc.nextLine();
+                                        boolean found=false;
                                         for (guest g:UsersList.getGuestList()){
                                             if(g.getName().equals(name)){
+                                                found=true;
                                                 g.getGuestDetails();
                                             }
+                                        }if(!found){
+                                            System.out.println("No guest with this name is found");
                                         }
                                     }break;
                                     case 5:{
                                         System.out.println("Enter room Number");
                                         System.out.print("-->");
                                         int rno=sc.nextInt();
+                                        boolean found=false;
                                         for (room r: UsersList.getRoomsList()){
                                             if(r.getRoomNo()==rno){
                                                 r.displayRoom();
+                                                found=true;
                                             }
+                                    }if(!found){
+                                        System.out.println("No room with this room number is found");
                                     }
                                 }break;
                                     case 6:{
@@ -162,10 +170,9 @@ public class Main {
                                         int bookNo=sc.nextInt();
                                         for (booking booking: UsersList.getBookingList()){
                                             if(booking.getBookingNo()==bookNo){
-                                                a1.retrieveBooking(booking);
-                                                System.out.println("Written to 'current.txt'");
+                                                a1.retrieveBooking(booking);    
                                             }
-                                        }
+                                        }System.out.println("Written to 'current.txt'");
                                     }
                                         break;
                                         case 4:{

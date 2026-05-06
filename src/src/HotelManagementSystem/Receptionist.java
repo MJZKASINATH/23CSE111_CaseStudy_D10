@@ -23,7 +23,7 @@ public class Receptionist extends Admin {
         servicetype=sc.nextLine();
         if(servicetype.equals("foodservice")){
             System.out.println("Enter the meals: ");
-            System.out.println("Breakfast,Lunch,Dinner\n");
+            System.out.println("Breakfast,Lunch,Dinner");
             servicetype= sc.nextLine();
             foodService food=new foodService(servicetype);
             food.provideService();

@@ -1,10 +1,12 @@
 package HotelManagementSystem;
+import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.io.Serializable;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.time.temporal.ChronoUnit;
+import java.util.Scanner;
 public class booking implements Serializable{
 	private String checkInDate;
     private String checkOutDate;
@@ -14,6 +16,7 @@ public class booking implements Serializable{
     public double roomServiceCost;
     private  int bookingNo;
     public static int totalBookings;
+    private static final String TOTAL_BOOKINGS_FILE = "/home/kasinath-k-s/Documents/JavaProject/23CSE111_CaseStudy_D10/output/files/totalBookings.txt";
     
     public booking(String checkInDate, String checkOutDate,String guestname, room room) {
         this.checkInDate = checkInDate;
@@ -21,6 +24,7 @@ public class booking implements Serializable{
         this.guestname = guestname;
         totalBookings++;
         this.bookingNo=totalBookings;
+        saveTotalBookings();
         this.room=room;
     }
     public void getBookingDetails(String filepath) {
@@ -43,6 +47,26 @@ public class booking implements Serializable{
         LocalDate end=LocalDate.parse(this.checkOutDate,formatter);
         return ChronoUnit.DAYS.between(start, end) + 1;
     }
+
+    public static void loadTotalBookings() {
+        try (Scanner fileScanner = new Scanner(new File(TOTAL_BOOKINGS_FILE))) {
+            if (fileScanner.hasNextInt()) {
+                totalBookings = fileScanner.nextInt();
+            }
+        } catch (IOException e) {
+            totalBookings = 0; 
+        }
+    }
+
+    public static void saveTotalBookings() {
+        try (FileWriter writer = new FileWriter(TOTAL_BOOKINGS_FILE)) {
+            writer.write(String.valueOf(totalBookings));
+        } catch (IOException e) {
+            System.out.println("Error saving total bookings counter.");
+        }
+    }
+
+
     public int getBookingNo(){
         return bookingNo;
     }
