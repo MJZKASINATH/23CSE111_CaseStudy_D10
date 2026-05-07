@@ -129,6 +129,7 @@ public class Main {
                                             if(r.getRoomNo()==rno){
                                                 r.displayRoom();
                                                 found=true;
+                                                break;
                                             }
                                     }if(!found){
                                         System.out.println("No room with this room number is found");
