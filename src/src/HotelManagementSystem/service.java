@@ -1,6 +1,6 @@
 package HotelManagementSystem;
 public abstract class service {
-    protected String serviceType;
+    private String serviceType;
     protected double price;
 
     public service(String serviceType) {

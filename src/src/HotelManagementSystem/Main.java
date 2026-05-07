@@ -57,7 +57,7 @@ public class Main {
                             case "receptionist":{
                                 Receptionist a1 = new Receptionist(name, pin,"receptionist");
                                 System.out.println("Services provided: ");
-                                System.out.println("1.Check in Guest\n2.Check Out Guest\n3.retrieveBookingDetails\n4.Guest Details\n5.Room Details\n6.View Occupancy" );
+                                System.out.println("1.Check in Guest\n2.Check Out Guest\n3.retrieveBookingDetails\n4.Guest Details\n5.Room Details\n6.View Occupancy\n7.Log Out" );
                                 System.out.print("-->");
                                 choice=sc.nextInt();
                                 sc.nextLine();

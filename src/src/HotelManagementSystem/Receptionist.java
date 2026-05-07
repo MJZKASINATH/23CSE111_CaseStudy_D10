@@ -29,7 +29,6 @@ public class Receptionist extends Admin {
             food.provideService();
             sc.close();
             b.addFoodServiceCost(food.getPrice());
-            b.foodServiceCost+=food.getPrice();
         }else if(servicetype.equals("roomservice")){
             System.out.println("List of Services:\n1.Cleaning\n2.laundry\n3.extra bed");
             System.out.println("Enter the type of Service:");
